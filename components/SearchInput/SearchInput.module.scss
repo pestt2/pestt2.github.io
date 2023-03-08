@@ -18,6 +18,7 @@ $input-border-color: rgb(221, 221, 221);
 
 .input {
   width: 100%;
+  min-width: 450px;
   appearance: none;
   background-color: var(--color-white);
   box-shadow: #000 0px 0px 0px 0px, #000 0px 0px 0px 0px,

@@ -1,6 +1,6 @@
 {
-  "name": "@faustjs/atlas-blueprint-portfolio",
-  "version": "0.2.0",
+  "name": "pestt",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "faust dev",
@@ -20,7 +20,6 @@
     "classnames": "^2.3.1",
     "graphql": "^16.6.0",
     "next": "12.2.4",
-    "normalize.css": "^8.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "4.6.0",
@@ -29,16 +28,19 @@
     "use-debounce": "8.0.4"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
     "@wordpress/base-styles": "^4.7.0",
     "@wordpress/block-library": "^7.13.0",
+    "autoprefixer": "^10.4.13",
     "dotenv-flow": "^3.2.0",
     "eslint": "8.9.0",
     "eslint-config-next": "12.0.10",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
+    "postcss": "^8.4.21",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
-    "sass": "^1.54.9"
+    "tailwindcss": "^3.2.7"
   },
   "engines": {
     "node": ">=14.0.0",

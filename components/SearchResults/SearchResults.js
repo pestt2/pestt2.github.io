@@ -23,7 +23,7 @@ export default function SearchResults({ searchResults, isLoading }) {
     return (
       <div className={styles['no-results']}>
         <FaSearch className={styles['no-results-icon']} />
-        <div className={styles['no-results-text']}>No results</div>
+        <div className={styles['no-results-text']}>Κανένα αποτέλεσμα</div>
       </div>
     );
   }

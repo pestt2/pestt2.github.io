@@ -14,7 +14,7 @@ const cx = className.bind(styles);
 function ProjectHeader({ image, title, summary }) {
   return (
     <section className={cx('header')}>
-      <div className="container">
+      {/* <div className="container"> */}
         <div className="row row-center">
           <FeaturedImage className={cx('column')} image={image} />
           <div className={cx('column')}>
@@ -22,7 +22,7 @@ function ProjectHeader({ image, title, summary }) {
             <p>{summary}</p>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </section>
   );
 }

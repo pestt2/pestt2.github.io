@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import styles from './SearchRecommendations.module.scss';
-
 /**
  * Render the SearchRecommendations component.
  *
@@ -12,8 +10,8 @@ import styles from './SearchRecommendations.module.scss';
  */
 export default function SearchRecommendations({ categories }) {
   return (
-    <div className={styles.recommendations}>
-      <h4>Browse by Category</h4>
+    <div className='flex flex-col items-center m-auto prose prose-lg'>
+      <h4>Περιήγηση ανά κατηγορία</h4>
       <ul>
         {categories?.map((node) => (
           <li key={node.databaseId}>

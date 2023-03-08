@@ -41,7 +41,7 @@ export default function SearchInput({ value, onChange, ...props }) {
         autoFocus
         onFocus={(e) => e.target.select()}
         type="text"
-        placeholder="Start typing..."
+        placeholder="Ξεκινήστε να πληκτρολογείτε..."
         {...props}
       />
     </div>

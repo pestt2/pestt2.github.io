@@ -11,6 +11,7 @@ import {
   SearchResults,
   SEO,
   SearchRecommendations,
+  Footer,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 import { useState } from 'react';
@@ -54,14 +55,13 @@ export default function Page() {
         description={siteDescription}
         menuItems={primaryMenu}
       />
-
       <Main>
-        <div className={styles['search-header-pane']}>
-          <div className="container small">
-            <h2 className={styles['search-header-text']}>
+        <div className='pb-16 mb-16 -mt-1 bg-primary'>
+          <div className="flex flex-col items-center max-w-5xl m-auto small">
+            <h2 className='py-16 text-xl text-center text-white'>
               {searchQuery && !searchResultsLoading
-                ? `Showing results for "${searchQuery}"`
-                : `Search`}
+                ? `Εμφάνιση αποτελεσμάτων για "${searchQuery}"`
+                : `Αναζήτηση`}
             </h2>
             <SearchInput
               value={searchQuery}
@@ -70,10 +70,10 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="container small">
+        {/* <div className="container small"> */}
           {searchResultsError && (
             <div className="alert-error">
-              An error has occurred. Please refresh and try again.
+              Προέκυψε κάποιο σφάλμα. Παρακαλώ ανανεώστε την σελίδα και δοκιμάστε ξανά.
             </div>
           )}
 
@@ -104,8 +104,9 @@ export default function Page() {
           {!searchResultsLoading && searchResultsData === undefined && (
             <SearchRecommendations categories={categories} />
           )}
-        </div>
+        {/* </div> */}
       </Main>
+      <Footer />
     </>
   );
 }
@@ -122,17 +123,11 @@ Page.query = gql`
   ${NavigationMenu.fragments.entry}
   query GetPageData(
     $headerLocation: MenuLocationEnum
-    $footerLocation: MenuLocationEnum
   ) {
     generalSettings {
       ...BlogInfoFragment
     }
     headerMenuItems: menuItems(where: { location: $headerLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
-    }
-    footerMenuItems: menuItems(where: { location: $footerLocation }) {
       nodes {
         ...NavigationMenuItemFragment
       }

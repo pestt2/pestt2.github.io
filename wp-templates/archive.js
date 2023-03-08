@@ -29,7 +29,6 @@ export default function Archive(props) {
   const { title: siteTitle, description: siteDescription } =
     data?.generalSettings;
   const primaryMenu = data?.headerMenuItems?.nodes ?? [];
-  const footerMenu = data?.footerMenuItems?.nodes ?? [];
   const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node);
 
   return (
@@ -50,7 +49,7 @@ export default function Archive(props) {
       <Main>
         <>
           <EntryHeader title={`${__typename}: ${name}`} />
-          <div className="container">
+          {/* <div className="container"> */}
             <Posts posts={postList} />
             <LoadMore
               className="text-center"
@@ -59,10 +58,10 @@ export default function Archive(props) {
               isLoading={loading}
               fetchMore={fetchMore}
             />
-          </div>
+          {/* </div> */}
         </>
       </Main>
-      <Footer title={siteTitle} menuItems={footerMenu} />
+      <Footer title={siteTitle} />
     </>
   );
 }
@@ -76,7 +75,6 @@ Archive.query = gql`
     $first: Int!
     $after: String!
     $headerLocation: MenuLocationEnum
-    $footerLocation: MenuLocationEnum
   ) {
     nodeByUri(uri: $uri) {
       __typename
@@ -191,11 +189,6 @@ Archive.query = gql`
         ...NavigationMenuItemFragment
       }
     }
-    footerMenuItems: menuItems(where: { location: $footerLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
-    }
   }
 `;
 
@@ -205,6 +198,5 @@ Archive.variables = ({ uri }) => {
     first: appConfig.postsPerPage,
     after: '',
     headerLocation: MENUS.PRIMARY_LOCATION,
-    footerLocation: MENUS.FOOTER_LOCATION,
   };
 };

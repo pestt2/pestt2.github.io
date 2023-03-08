@@ -24,18 +24,17 @@ export default function Header({ className, menuItems }) {
   );
 
   return (
-    <header className={headerClasses}>
+    <header className='px-2 py-3 md:px-4 md:py-5 text-primary lg:px-12 lg:py-14'>
       <SkipNavigationLink />
-      <div className="container">
-        <div className={cx('bar')}>
-          <div className={cx('logo')}>
+        <div className='flex flex-wrap items-center justify-between'>
+          <div className='w-24 h-auto md:w-16 custom:w-20 lg:w-24 xl:w-32'>
             <Link href="/">
               <a title="Home">
                 <Image
                   src="/logo.png"
-                  width={400}
-                  height={80}
-                  alt="Blueprint media logo"
+                  width={100}
+                  height={100}
+                  alt="ΠΕΣΤΤ logo"
                   layout="responsive"
                 />
               </a>
@@ -43,7 +42,7 @@ export default function Header({ className, menuItems }) {
           </div>
           <button
             type="button"
-            className={cx('nav-toggle')}
+            className='flex items-center w-16 p-5 m-0 transition-colors duration-300 ease-in-out bg-transparent border-2 h-14 text-primary border-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white md:hidden'
             onClick={() => setIsNavShown(!isNavShown)}
             aria-label="Toggle navigation"
             aria-controls={cx('primary-navigation')}
@@ -65,7 +64,6 @@ export default function Header({ className, menuItems }) {
             </li>
           </NavigationMenu>
         </div>
-      </div>
     </header>
   );
 }

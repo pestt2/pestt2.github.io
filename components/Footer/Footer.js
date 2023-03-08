@@ -1,128 +1,58 @@
-import classNames from 'classnames/bind';
-import {
-  FaFacebookF,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-  FaYoutube,
-} from 'react-icons/fa';
-import appConfig from 'app.config.js';
+import { useQuery, gql } from '@apollo/client';
 
-import { NavigationMenu } from '../';
-
-import styles from './Footer.module.scss';
-
-let cx = classNames.bind(styles);
+import Image from 'next/image';
+import Link from 'next/link';
+import { GenericFields } from 'fragments/Generics';
 
 /**
  * The Blueprint's Footer component
  * @return {React.ReactElement} The Footer component.
  */
-export default function Footer({ menuItems }) {
+export default function Footer() {
+  const { data, loading } = useQuery(Footer.query);
+  // Loading state for previews
+  if (loading) {
+    return <>Loading...</>;
+  }
+
+  const { address, googleMaps, email, officeHours, phone } = data?.generics.nodes[0] ?? {};
+
   return (
-    <footer className={cx('footer')}>
-      <div className="container">
-        {appConfig?.socialLinks && (
-          <div className={cx('social-links')}>
-            <ul aria-label="Social media">
-              {appConfig.socialLinks?.twitterUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.twitterUrl}
-                  >
-                    <FaTwitter title="Twitter" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.facebookUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.facebookUrl}
-                  >
-                    <FaFacebookF
-                      title="Facebook"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.instagramUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.instagramUrl}
-                  >
-                    <FaInstagram
-                      title="Instagram"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.youtubeUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.youtubeUrl}
-                  >
-                    <FaYoutube title="YouTube" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.githubUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.githubUrl}
-                  >
-                    <FaGithub title="GitHub" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.linkedinUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.linkedinUrl}
-                  >
-                    <FaLinkedinIn
-                      title="LinkedIn"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
-            </ul>
-          </div>
-        )}
-
-        <NavigationMenu className={cx('nav')} menuItems={menuItems} />
-
-        <div className={cx('copyright')}>
-          &copy; {new Date().getFullYear()} Blueprint Media &#183; Powered By{' '}
-          <a href="https://wpengine.com/atlas">Atlas</a>
+    <footer className='flex flex-col-reverse items-center justify-between gap-4 px-4 py-5 mt-4 text-white md:mt-8 bg-primary md:px-12 md:py-12 md:flex-row'>
+      {/* <div className=''> */}
+        <div className='text-base md:text-lg'>
+          <p>Διεύθυνση: <a href={googleMaps} target="_blank">{address}</a></p>
+          <p>Ώρες γραφείου: {officeHours}</p>
+          <p>Τηλέφωνο επικοινωνίας: <a href={`tel:+30${phone}`}>{phone}</a></p>
+          <p>e-mail: <a href={`mailto:${email}`} target="_blank">{email}</a></p>
         </div>
-      </div>
+        <div className='w-32'>
+          <Link href="/">
+            <a title="Home">
+              <Image
+                src="/logo.png"
+                width={128}
+                height={128}
+                alt="ΠΕΣΤΤ logo"
+                layout="responsive"
+              />
+            </a>
+          </Link>
+        </div>
+      {/* </div> */}
     </footer>
   );
 }
+
+Footer.query = gql`
+  ${GenericFields}
+  query FooterQuery {
+    generics(first: 1) {
+      nodes {
+        ...GenericFields
+      }
+    }
+  }
+`;
+
+

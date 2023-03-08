@@ -29,7 +29,6 @@ export default function Page() {
 
   const { title: siteTitle } = data?.generalSettings;
   const primaryMenu = data?.headerMenuItems?.nodes ?? [];
-  const footerMenu = data?.footerMenuItems?.nodes ?? [];
   const postList = data.posts.edges.map((el) => el.node);
 
   return (
@@ -39,8 +38,8 @@ export default function Page() {
       <Header menuItems={primaryMenu} />
 
       <Main>
-        <EntryHeader title="Latest Posts" />
-        <div className="container">
+        <EntryHeader title="Τελευταία Άρθρα" />
+        {/* <div className="container"> */}
           <Posts posts={postList} id="post-list" />
           <LoadMore
             className="text-center"
@@ -49,10 +48,10 @@ export default function Page() {
             isLoading={loading}
             fetchMore={fetchMore}
           />
-        </div>
+        {/* </div> */}
       </Main>
 
-      <Footer title={siteTitle} menuItems={footerMenu} />
+      <Footer title={siteTitle} />
     </>
   );
 }
@@ -66,7 +65,6 @@ Page.query = gql`
     $first: Int!
     $after: String
     $headerLocation: MenuLocationEnum
-    $footerLocation: MenuLocationEnum
   ) {
     posts(first: $first, after: $after) {
       edges {
@@ -85,11 +83,6 @@ Page.query = gql`
       ...BlogInfoFragment
     }
     headerMenuItems: menuItems(where: { location: $headerLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
-    }
-    footerMenuItems: menuItems(where: { location: $footerLocation }) {
       nodes {
         ...NavigationMenuItemFragment
       }

@@ -24,8 +24,22 @@ export default function Component(props) {
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings;
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? [];
-  const footerMenu = props?.data?.footerMenuItems?.nodes ?? [];
   const { title, content, featuredImage } = props?.data?.page ?? { title: '' };
+
+  // if (title === 'Επικοινωνία' && typeof window !== "undefined") {
+  //   let mapOptions = {
+  //     center: [37.9834973, 23.7266555],
+  //     zoom: 10
+  //   }
+    
+  //   let map = new L.map('map' , mapOptions);
+    
+  //   let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+  //   map.addLayer(layer);
+    
+  //   let marker = new L.Marker([37.9834973, 23.7266555]);
+  //   marker.addTo(map);
+  // }
 
   return (
     <>
@@ -45,13 +59,11 @@ export default function Component(props) {
       />
       <Main>
         <>
-          <EntryHeader title={title} image={featuredImage?.node} />
-          <div className="container">
-            <ContentWrapper content={content} />
-          </div>
+          {/* <EntryHeader title={title} image={featuredImage?.node} /> */}
+          <ContentWrapper content={content} />
         </>
       </Main>
-      <Footer title={siteTitle} menuItems={footerMenu} />
+      <Footer title={siteTitle} />
     </>
   );
 }
@@ -60,7 +72,6 @@ Component.variables = ({ databaseId }, ctx) => {
   return {
     databaseId,
     headerLocation: MENUS.PRIMARY_LOCATION,
-    footerLocation: MENUS.FOOTER_LOCATION,
     asPreview: ctx?.asPreview,
   };
 };
@@ -72,7 +83,6 @@ Component.query = gql`
   query GetPageData(
     $databaseId: ID!
     $headerLocation: MenuLocationEnum
-    $footerLocation: MenuLocationEnum
     $asPreview: Boolean = false
   ) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
@@ -82,11 +92,6 @@ Component.query = gql`
     }
     generalSettings {
       ...BlogInfoFragment
-    }
-    footerMenuItems: menuItems(where: { location: $footerLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
     }
     headerMenuItems: menuItems(where: { location: $headerLocation }) {
       nodes {

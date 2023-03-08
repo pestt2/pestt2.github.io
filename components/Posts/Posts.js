@@ -25,17 +25,17 @@ function Posts({ posts, intro, id }) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     <section {...(id && { id })}>
       {intro && <p>{intro}</p>}
-      <div className={cx('post-list')}>
+      <div className='flex flex-col'>
         {posts?.map((post, i) => {
           const isFirstNewResult = i === firstNewResultIndex;
-          let image = post?.featuredImage?.node;
+          // let image = post?.featuredImage?.node;
 
-          if (!image && appConfig.archiveDisplayFeaturedImage) {
-            image = {
-              sourceUrl: '/static/banner.jpeg',
-              altText: 'Downtown Austin, Texas skyline',
-            };
-          }
+          // if (!image && appConfig.archiveDisplayFeaturedImage) {
+          //   image = {
+          //     sourceUrl: '/static/banner.jpeg',
+          //     altText: 'Downtown Austin, Texas skyline',
+          //   };
+          // }
 
           return (
             <div
@@ -44,7 +44,7 @@ function Posts({ posts, intro, id }) {
               id={`post-${post.id}`}
             >
               <div className={cx('card')}>
-                <Link href={post?.uri ?? '#'}>
+                {/* <Link href={post?.uri ?? '#'}>
                   <a className={cx('image-holder')} tabIndex="-1">
                     <FeaturedImage
                       className={cx('image')}
@@ -54,8 +54,13 @@ function Posts({ posts, intro, id }) {
                       priority={i < appConfig.postsAboveTheFold}
                     />
                   </a>
-                </Link>
+                </Link> */}
 
+                <PostInfo
+                  className={cx('info')}
+                  // author={post?.author?.node?.name}
+                  date={post?.date}
+                />&nbsp;-&nbsp; 
                 <Heading level="h4" className={cx('header')}>
                   <Link href={post?.uri ?? '#'}>
                     <a ref={isFirstNewResult ? firstNewResultRef : null}>
@@ -63,16 +68,11 @@ function Posts({ posts, intro, id }) {
                     </a>
                   </Link>
                 </Heading>
-                <PostInfo
-                  className={cx('info')}
-                  author={post?.author?.node?.name}
-                  date={post?.date}
-                />
               </div>
             </div>
           );
         })}
-        {posts && posts?.length < 1 && <p>No posts found.</p>}
+        {posts && posts?.length < 1 && <p>Δεν βρέθηκαν άρθρα.</p>}
       </div>
     </section>
   );

@@ -16,8 +16,6 @@ import ProjectHeader from './ProjectHeader';
 import SEO from './SEO';
 import Footer from './Footer';
 import TaxonomyTerms from './TaxonomyTerms';
-import Testimonials from './Testimonials';
-import TestimonialItem from './TestimonialItem';
 import SkipNavigationLink from './SkipNavigationLink';
 import SearchInput from './SearchInput';
 import SearchResults from './SearchResults';
@@ -43,8 +41,6 @@ export {
   SEO,
   Footer,
   TaxonomyTerms,
-  Testimonials,
-  TestimonialItem,
   SkipNavigationLink,
   SearchInput,
   SearchResults,
