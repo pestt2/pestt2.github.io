@@ -11,13 +11,11 @@ let cx = classNames.bind(styles);
 /**
  * A Header component
  * @param {Props} props The props object.
- * @param {string} props.className An optional className to be added to the container.
  * @return {React.ReactElement} The FeaturedImage component.
  */
-export default function Header({ className, menuItems }) {
+export default function Header({ menuItems }) {
   const [isNavShown, setIsNavShown] = useState(false);
 
-  const headerClasses = cx('header', className);
   const navClasses = cx(
     'primary-navigation',
     isNavShown ? cx('show') : undefined
