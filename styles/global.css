@@ -16,3 +16,12 @@ p {
   @apply flex;
   @apply justify-between;
 }
+
+.wp-block-latest-posts__list.has-dates.wp-block-latest-posts {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.wp-block-latest-posts__post-date::before {
+  content: " - ";
+}

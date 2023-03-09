@@ -24,18 +24,9 @@ function Posts({ posts, intro, id }) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     <section {...(id && { id })}>
       {intro && <p>{intro}</p>}
-      <div className='flex flex-col'>
+      <div className='flex flex-col max-w-5xl m-auto'>
         {posts?.map((post, i) => {
           const isFirstNewResult = i === firstNewResultIndex;
-          // let image = post?.featuredImage?.node;
-
-          // if (!image && appConfig.archiveDisplayFeaturedImage) {
-          //   image = {
-          //     sourceUrl: '/static/banner.jpeg',
-          //     altText: 'Downtown Austin, Texas skyline',
-          //   };
-          // }
-
           return (
             <div
               className={cx('container')}
@@ -43,23 +34,11 @@ function Posts({ posts, intro, id }) {
               id={`post-${post.id}`}
             >
               <div className={cx('card')}>
-                {/* <Link href={post?.uri ?? '#'}>
-                  <a className={cx('image-holder')} tabIndex="-1">
-                    <FeaturedImage
-                      className={cx('image')}
-                      image={image}
-                      width={340}
-                      height={340}
-                      priority={i < appConfig.postsAboveTheFold}
-                    />
-                  </a>
-                </Link> */}
-
                 <PostInfo
                   className={cx('info')}
                   // author={post?.author?.node?.name}
                   date={post?.date}
-                />&nbsp;-&nbsp; 
+                />&nbsp;-&nbsp;
                 <Heading level="h4" className={cx('header')}>
                   <Link href={post?.uri ?? '#'}>
                     <a ref={isFirstNewResult ? firstNewResultRef : null}>

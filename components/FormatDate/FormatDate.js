@@ -5,10 +5,16 @@ export default function FormatDate({ date }) {
     return null;
   }
 
+  // const timeformat = {
+  //   year: 'numeric',
+  //   month: 'long',
+  //   day: 'numeric',
+  //   hour12: false,
+  // };
   const timeformat = {
     year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
     hour12: false,
   };
 

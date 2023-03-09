@@ -31,7 +31,7 @@ export default function SearchResults({ searchResults, isLoading }) {
   return (
     <>
       {searchResults?.map((node) => (
-        <div key={node.databaseId} className={styles.result}>
+        <div key={node.databaseId} className={`${styles.result} max-w-5xl m-auto`}>
           <Link href={node.uri}>
             <a>
               <h2 className={styles.title}>{node.title}</h2>

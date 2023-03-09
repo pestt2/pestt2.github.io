@@ -14,7 +14,7 @@ const cx = className.bind(styles);
  */
 export default function ContentWrapper({ content, className, children }) {
   return (
-    <article className={cx('content', className, 'max-w-5xl prose lg:prose-xl')}>
+    <article className={cx('content', className, 'px-2 md:px-4 lg:px-0 max-w-5xl prose lg:prose-xl')}>
       <div dangerouslySetInnerHTML={{ __html: content ?? '' }} />
       {children}
     </article>

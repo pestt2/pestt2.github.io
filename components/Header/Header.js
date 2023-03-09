@@ -53,7 +53,7 @@ export default function Header({ menuItems }) {
             className={navClasses}
             menuItems={menuItems}
           >
-            <li>
+            <li className='pt-4 md:pt-0 md:pl-4'>
               <Link href="/search">
                 <a>
                   <FaSearch title="Search" role="img" />
