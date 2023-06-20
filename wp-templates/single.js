@@ -51,7 +51,7 @@ export default function Component(props) {
             author={author?.node?.name}
           /> */}
           {/* <div className="container"> */}
-            <ContentWrapper content={content}>
+            <ContentWrapper content={content} date={date}>
               <TaxonomyTerms post={props.data.post} taxonomy={'categories'} />
               <TaxonomyTerms post={props.data.post} taxonomy={'tags'} />
             </ContentWrapper>

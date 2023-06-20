@@ -13,6 +13,18 @@
     figure {
       margin-left: 0;
       margin-right: 0;
+
+      &.wp-block-gallery {
+        flex-wrap: wrap;
+      }
+
+      &.wp-block-image {
+        margin: auto;
+        margin-bottom: 1rem;
+        @media (min-width: $breakpoint-extra-small) {
+          flex-basis: 30%;
+        }
+      }
     }
 
     h1,
