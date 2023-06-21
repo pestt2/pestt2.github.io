@@ -78,13 +78,15 @@ jobs:
         env:
           NEXT_PUBLIC_WORDPRESS_URL: https://wp.pestt.gr
           FAUST_SECRET_KEY: d4091acd-ea12-432c-8d71-68a9311af0b6
-      # - name: Static HTML export with Next.js
-      #   run: ${{ steps.detect-package-manager.outputs.runner }} next export
+      - name: Static HTML export with Next.js
+        run: ${{ steps.detect-package-manager.outputs.runner }} next export && touch out/.nojekyll
+        env:
+          NEXT_PUBLIC_WORDPRESS_URL: https://wp.pestt.gr
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # path: ./out
-          path: ./.next
+          path: ./out
+          # path: ./.next
 
   # Deployment job
   deploy:
