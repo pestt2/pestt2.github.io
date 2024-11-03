@@ -44,12 +44,12 @@ export default function Component(props) {
       />
       <Main>
         <>
-          {/* <EntryHeader
+          <EntryHeader
             title={title}
-            image={featuredImage?.node}
-            date={date}
-            author={author?.node?.name}
-          /> */}
+            // image={featuredImage?.node}
+            // date={date}
+            // author={author?.node?.name}
+          />
           {/* <div className="container"> */}
             <ContentWrapper content={content} date={date}>
               <TaxonomyTerms post={props.data.post} taxonomy={'categories'} />
